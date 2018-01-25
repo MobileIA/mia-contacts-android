@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">contacts</string>
+    <!-- Select Contact Activity -->
+    <string name="select_contact_title_button_search">Buscar</string>
 </resources>

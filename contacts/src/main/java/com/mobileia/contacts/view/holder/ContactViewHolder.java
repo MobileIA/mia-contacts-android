@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.mobileia.contacts.R;
+import com.mobileia.contacts.adapter.BaseContactAdapter;
 import com.mobileia.contacts.helper.GlideApp;
 
 import jagerfield.mobilecontactslibrary.Contact.Contact;
@@ -73,11 +74,14 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
         contact = c;
         // Setear el titulo del contacto
         title.setText(c.getDisplaydName());
-        // Setear el numero de telefono
-        if(c.getNumbers().size() > 0){
-            subtitle.setText(c.getNumbers().get(0).getNormalizedNumber());
-        }else{
-            subtitle.setText("");
+        // verificamos si existe el segundo texto
+        if(subtitle != null){
+            // Setear el numero de telefono
+            if(c.getNumbers().size() > 0){
+                subtitle.setText(c.getNumbers().get(0).getNormalizedNumber());
+            }else{
+                subtitle.setText("");
+            }
         }
         // Cargar imagen
         String photo = c.getPhotoUri();

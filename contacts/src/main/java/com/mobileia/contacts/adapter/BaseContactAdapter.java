@@ -8,6 +8,7 @@ import com.mobileia.contacts.R;
 import com.mobileia.contacts.view.holder.ContactViewHolder;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import jagerfield.mobilecontactslibrary.Contact.Contact;
 
@@ -97,6 +98,32 @@ public class BaseContactAdapter extends RecyclerView.Adapter<ContactViewHolder> 
         // Agregamos al listado
         mFiltered.add(c);
         // Refrecamos adapter
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Funcion que se encarga de filtrar los contactos
+     * @param query
+     */
+    public void filterByQuery(String query){
+        // Limpiamos contactos mostrados
+        mFiltered.clear();
+        // Recorremos todos los contactos
+        for (Contact c: mAll) {
+            if(c.getDisplaydName().toLowerCase().contains(query.toLowerCase())){
+                mFiltered.add(c);
+            }
+        }
+        // Refrescar listado
+        notifyDataSetChanged();
+    }
+
+    public void clearFilter(){
+        // Limpiamos contactos mostrados
+        mFiltered.clear();
+        // Cargamos todos los contactos nuevamente
+        mFiltered.addAll(mAll);
+        // Refrescar listado
         notifyDataSetChanged();
     }
 
