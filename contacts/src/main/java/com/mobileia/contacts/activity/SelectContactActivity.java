@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toolbar;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mobileia.contacts.R;
@@ -124,10 +123,14 @@ public class SelectContactActivity extends AppCompatActivity implements Material
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        System.out.println("Busqueda1: " + query);
         return false;
     }
 
+    /**
+     * Funcion que se ejecuta mientras se escribe en el campo de busqueda
+     * @param newText
+     * @return
+     */
     @Override
     public boolean onQueryTextChange(String newText) {
         if(newText != null && newText.length() > 2) {
@@ -187,6 +190,19 @@ public class SelectContactActivity extends AppCompatActivity implements Material
         //mAdapter.activateNewContacts();
         // Creamos el adaptador seleccionado
         mAdapterSelect = new MiniContactAdapter();
+        // Asignar click al evento
+        mAdapterSelect.setOnClickListener(new BaseContactAdapter.OnContactAdapter() {
+            @Override
+            public void onClickContact(Contact contact) {
+                // Eliminamos contacto de los seleccionados
+                mAdapterSelect.removeContact(contact);
+                // Verificar si se quedo vacio el adapter
+                if(mAdapterSelect.getItemCount() == 0){
+                    // Ocultar listado
+                    mContainerSelect.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     /**

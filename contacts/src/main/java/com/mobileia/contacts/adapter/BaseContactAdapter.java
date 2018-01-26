@@ -118,12 +118,26 @@ public class BaseContactAdapter extends RecyclerView.Adapter<ContactViewHolder> 
         notifyDataSetChanged();
     }
 
+    /**
+     * Limpia las busquedas y carga nuevamente todos los contactos
+     */
     public void clearFilter(){
         // Limpiamos contactos mostrados
         mFiltered.clear();
         // Cargamos todos los contactos nuevamente
         mFiltered.addAll(mAll);
         // Refrescar listado
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Funcion para eliminar un contacto del listado
+     * @param c
+     */
+    public void removeContact(Contact c){
+        // Eliminamos contacto del listado
+        mFiltered.remove(c);
+        // Actualizamos el listado
         notifyDataSetChanged();
     }
 
