@@ -44,7 +44,7 @@ public class BaseContactAdapter extends RecyclerView.Adapter<ContactViewHolder> 
     protected OnContactAdapter mListener = null;
 
     /**
-     * Función que se ejecuta al momento de hacer click en un contacto
+     * Funcion que se ejecuta al momento de hacer click en un contacto
      * @param contact
      */
     @Override

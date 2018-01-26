@@ -21,7 +21,7 @@ public class PermissionHelper {
      * @param listener
      */
     public static void readContacts(final Activity activity, final OnReadContacts listener){
-        // Pedimos permisos de localización
+        // Pedimos permisos
         Dexter.withActivity(activity)
                 .withPermission(Manifest.permission.READ_CONTACTS)
                 .withListener(new PermissionListener() {

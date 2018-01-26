@@ -159,7 +159,7 @@ public class SelectContactActivity extends AppCompatActivity implements Material
         Intent intent = new Intent();
         // Guardamos los contactos seleccionados
         intent.putParcelableArrayListExtra(EXTRA_CONTACT_SELECTED, selecteds);
-        // Enviamos información
+        // Enviamos informacion
         setResult(RESULT_OK, intent);
         // Cerramos pantalla
         finish();
