@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.mobileia.contacts.activity.SelectContactActivity;
+import com.mobileia.contacts.entity.Person;
 import com.mobileia.contacts.listener.OnSelectContactListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by matiascamiletti on 22/1/18.
@@ -42,7 +45,10 @@ public class MobileiaContacts {
         if (requestCode == PICK_CONTACT_REQUEST) {
             // Verificamos si la respuesta fue correcta
             if (resultCode == Activity.RESULT_OK) {
-
+                // Obtener listado de seleccionados
+                ArrayList<Person> list = data.getParcelableArrayListExtra(SelectContactActivity.EXTRA_CONTACT_SELECTED);
+                // Enviamos contactos al listener
+                mListener.onSelectContacts(list);
             }
         }
     }

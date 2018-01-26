@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity implements OnSelectContactLi
 
     @Override
     public void onSelectContacts(ArrayList<Person> persons) {
-
+        for(Person p : persons){
+            System.out.println("Persona: " + p.fullname + " Tel: " + p.phone);
+        }
     }
 
     @Override

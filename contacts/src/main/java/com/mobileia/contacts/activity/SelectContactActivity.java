@@ -1,5 +1,6 @@
 package com.mobileia.contacts.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,16 +15,22 @@ import com.mobileia.contacts.R;
 import com.mobileia.contacts.adapter.BaseContactAdapter;
 import com.mobileia.contacts.adapter.MiniContactAdapter;
 import com.mobileia.contacts.adapter.NormalContactAdapter;
+import com.mobileia.contacts.entity.Person;
 import com.mobileia.contacts.helper.PermissionHelper;
 import com.mobileia.contacts.helper.ToolbarHelper;
 import com.mobileia.recyclerview.MobileiaRecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import jagerfield.mobilecontactslibrary.Contact.Contact;
 import jagerfield.mobilecontactslibrary.ImportContactsAsync;
 
 public class SelectContactActivity extends AppCompatActivity implements MaterialSearchView.OnQueryTextListener, BaseContactAdapter.OnContactAdapter {
+    /**
+     * Variable que se usa para obtener los contactos seleccionados
+     */
+    public static final String EXTRA_CONTACT_SELECTED = "com.mobileia.contacts.activity.SelectContactActivity.EXTRA_CONTACT_SELECTED";
 
     /**
      * Almacena la barra de busqueda
@@ -139,6 +146,23 @@ public class SelectContactActivity extends AppCompatActivity implements Material
             mAdapter.clearFilter();
         }
         return false;
+    }
+
+    /**
+     * Funcion que se ejecuta al tocar el boton de listo
+     * @param v
+     */
+    public void onClickSend(View v){
+        // Obtenemos listado de personas seleccionadas
+        ArrayList<Person> selecteds = Person.fromContacts(mAdapterSelect.getItems());
+        // Creamos el Intent
+        Intent intent = new Intent();
+        // Guardamos los contactos seleccionados
+        intent.putParcelableArrayListExtra(EXTRA_CONTACT_SELECTED, selecteds);
+        // Enviamos información
+        setResult(RESULT_OK, intent);
+        // Cerramos pantalla
+        finish();
     }
 
     /**

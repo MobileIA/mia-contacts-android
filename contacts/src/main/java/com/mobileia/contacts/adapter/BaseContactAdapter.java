@@ -156,6 +156,14 @@ public class BaseContactAdapter extends RecyclerView.Adapter<ContactViewHolder> 
     }
 
     /**
+     * Obtiene el listado que se muestra
+     * @return
+     */
+    public ArrayList<Contact> getItems(){
+        return mFiltered;
+    }
+
+    /**
      * Setea el listener para el listado
      * @param listener
      */
