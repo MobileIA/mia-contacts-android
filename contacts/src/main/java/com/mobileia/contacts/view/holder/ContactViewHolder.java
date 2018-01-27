@@ -5,10 +5,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.mobileia.contacts.R;
 import com.mobileia.contacts.adapter.BaseContactAdapter;
-import com.mobileia.contacts.helper.GlideApp;
 
 import jagerfield.mobilecontactslibrary.Contact.Contact;
 
@@ -86,13 +86,12 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
         // Cargar imagen
         String photo = c.getPhotoUri();
         if(photo != null && photo.length() > 0){
-            GlideApp.with(image).load(photo).apply(RequestOptions.circleCropTransform()).into(image);
+            Glide.with(image).load(photo).apply(RequestOptions.circleCropTransform()).into(image);
         }else{
-            GlideApp.with(image).load(R.drawable.avatar_one).apply(RequestOptions.circleCropTransform()).into(image);
+            Glide.with(image).load(R.drawable.avatar_one).apply(RequestOptions.circleCropTransform()).into(image);
         }
     }
-
-
+    
 
     /**
      * Interface para enlazar las acciones del Adapter
