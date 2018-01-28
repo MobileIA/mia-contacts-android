@@ -21,6 +21,8 @@ public class Person implements Parcelable {
 
     public String photo;
 
+    public int has_account;
+
     public Person(){}
 
     public Person(Parcel in){
@@ -28,6 +30,7 @@ public class Person implements Parcelable {
         fullname = in.readString();
         phone = in.readString();
         photo = in.readString();
+        has_account = in.readInt();
     }
 
     @Override
@@ -41,6 +44,7 @@ public class Person implements Parcelable {
         parcel.writeString(fullname);
         parcel.writeString(phone);
         parcel.writeString(photo);
+        parcel.writeInt(has_account);
     }
 
     /**
