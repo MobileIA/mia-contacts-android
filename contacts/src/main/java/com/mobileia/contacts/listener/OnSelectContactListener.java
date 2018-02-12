@@ -10,4 +10,5 @@ import java.util.ArrayList;
 
 public interface OnSelectContactListener {
     void onSelectContacts(ArrayList<Person> persons);
+    void onSelectContactsCanceled();
 }

@@ -108,7 +108,10 @@ public class SelectContactActivity extends AppCompatActivity implements Material
         if (mSearchView.isSearchOpen()) {
             mSearchView.closeSearch();
         } else {
-            super.onBackPressed();
+            // Enviamos informacion de cancelacion
+            setResult(RESULT_CANCELED, new Intent());
+            // Cerramos pantalla
+            finish();
         }
     }
 

@@ -49,6 +49,9 @@ public class MobileiaContacts {
                 ArrayList<Person> list = data.getParcelableArrayListExtra(SelectContactActivity.EXTRA_CONTACT_SELECTED);
                 // Enviamos contactos al listener
                 mListener.onSelectContacts(list);
+            }else if(resultCode == Activity.RESULT_CANCELED){
+                // enviamos al listener la cancelacion
+                mListener.onSelectContactsCanceled();
             }
         }
     }
