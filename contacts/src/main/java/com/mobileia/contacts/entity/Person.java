@@ -19,6 +19,8 @@ public class Person implements Parcelable {
 
     public String phone;
 
+    public String email;
+
     public String photo;
 
     public int has_account;
@@ -29,6 +31,7 @@ public class Person implements Parcelable {
         id = in.readLong();
         fullname = in.readString();
         phone = in.readString();
+        email = in.readString();
         photo = in.readString();
         has_account = in.readInt();
     }
@@ -43,6 +46,7 @@ public class Person implements Parcelable {
         parcel.writeLong(id);
         parcel.writeString(fullname);
         parcel.writeString(phone);
+        parcel.writeString(email);
         parcel.writeString(photo);
         parcel.writeInt(has_account);
     }
@@ -58,6 +62,9 @@ public class Person implements Parcelable {
         person.fullname = contact.getDisplaydName();
         if(contact.getNumbers().size() > 0){
             person.phone = contact.getNumbers().get(0).getNormalizedNumber();
+        }
+        if(contact.getEmails().size() > 0){
+            person.email = contact.getEmails().get(0).getEmail();
         }
         person.photo = contact.getPhotoUri();
         return person;

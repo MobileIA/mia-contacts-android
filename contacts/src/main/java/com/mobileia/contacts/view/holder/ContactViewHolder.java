@@ -78,9 +78,9 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
         if(subtitle != null){
             // Setear el numero de telefono
             if(c.getNumbers().size() > 0){
-                subtitle.setText(c.getNumbers().get(0).getNormalizedNumber());
+                bindPhone(c);
             }else{
-                subtitle.setText("");
+                bindEmail(c);
             }
         }
         // Cargar imagen
@@ -91,7 +91,26 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
             Glide.with(image).load(R.drawable.avatar_one).apply(RequestOptions.circleCropTransform()).into(image);
         }
     }
-    
+
+    /**
+     * Funcion para mostrar el telefono del contacto
+     * @param c
+     */
+    protected void bindPhone(Contact c){
+        subtitle.setText(c.getNumbers().get(0).getNormalizedNumber());
+    }
+
+    /**
+     * Funcion para mostrar el email si no tiene telefono
+     * @param c
+     */
+    protected void bindEmail(Contact c){
+        if(c.getEmails().size() > 0){
+            subtitle.setText(c.getEmails().get(0).getEmail());
+        }else{
+            subtitle.setText("");
+        }
+    }
 
     /**
      * Interface para enlazar las acciones del Adapter
