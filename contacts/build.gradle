@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/MobileIA/mia-contacts-android'
     gitUrl = 'https://github.com/MobileIA/mia-contacts-android.git'
 
-    libraryVersion = '0.0.8'
+    libraryVersion = '0.0.10'
 
     developerId = 'mobileia'
     developerName = 'MobileIA'
@@ -30,8 +30,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 8
-        versionName "0.0.8"
+        versionCode 10
+        versionName "0.0.10"
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

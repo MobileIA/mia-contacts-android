@@ -242,6 +242,8 @@ public class SelectContactActivity extends AppCompatActivity implements Material
                 new ImportContactsAsync(SelectContactActivity.this, new ImportContactsAsync.ICallback(){
                     @Override
                     public void mobileContacts(ArrayList<Contact> contactList){
+                        // Limpiar contactos que no tienen numero
+                        cleanContactWithoutNumber(contactList);
                         // Setear en el adapter
                         mAdapter.loadContacts(contactList);
                     }
@@ -262,6 +264,32 @@ public class SelectContactActivity extends AppCompatActivity implements Material
         mSearchView.setOnQueryTextListener(this);
     }
 
+    /**
+     * Limpiar contactos que no tienen numero
+     * @param contactList
+     */
+    protected void cleanContactWithoutNumber(ArrayList<Contact> contactList){
+        // Almacena los contactos a eliminar
+        ArrayList<Contact> deletes = new ArrayList<Contact>();
+        // Recorremos los contactos
+        for (Contact c : contactList){
+            // verificar si tiene un numero guardado
+            if(c.getNumbers().size() == 0){
+                // Agregar para eliminar
+                deletes.add(c);
+                // Continuar
+                continue;
+            }
+            // Obtenemos numero
+            String phone = c.getNumbers().get(0).getNormalizedNumber();
+            if(phone == null || phone.length() == 0){
+                // Agregar para eliminar
+                deletes.add(c);
+            }
+        }
+        // Eliminar contactos
+        contactList.removeAll(deletes);
+    }
 
 
 }
