@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements OnSelectContactLi
     }
 
     @Override
+    public void onSelectContactsCanceled() {
+
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mMiaContacts.onActivityResult(requestCode, resultCode, data);
